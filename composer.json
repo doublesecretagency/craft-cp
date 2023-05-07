@@ -1,0 +1,22 @@
+{
+    "name": "doublesecretagency/craft-cp",
+    "description": "Internal tools for the Craft CMS control panel.",
+    "type": "craft-plugin",
+    "version": "1.0.0-beta.1",
+    "require": {
+        "php": ">=8.0.2",
+        "craftcms/cms": "^4.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "doublesecretagency\\cp\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "CP Helper for Double Secret Agency",
+        "developer": "Double Secret Agency",
+        "handle": "_cp",
+        "schemaVersion": "1.0.0",
+        "class": "doublesecretagency\\cp\\CP"
+    }
+}
