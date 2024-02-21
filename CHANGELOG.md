@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.0.1 - 2024-02-20
 
 ### Added
 - Added plugin icon.
