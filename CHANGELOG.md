@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+- Adjusted plugin icon.
+
 ## 2.0.1 - 2024-02-20
 
 ### Added
