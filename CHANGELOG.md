@@ -4,6 +4,7 @@
 
 ### Changed
 - Adjusted plugin icon.
+- Adjusted requirements.
 
 ## 2.0.1 - 2024-02-20
 
