@@ -2,7 +2,7 @@
     "name": "doublesecretagency/craft-cp",
     "description": "Internal tools for the Craft CMS control panel.",
     "type": "craft-plugin",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "require": {
         "craftcms/cms": "^5.0.0"
     },

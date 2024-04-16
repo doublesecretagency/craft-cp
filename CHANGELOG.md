@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.0.2 - 2024-04-16
 
 ### Changed
 - Adjusted plugin icon.
