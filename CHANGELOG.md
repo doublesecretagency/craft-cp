@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+- Compatible with both Craft 4 and Craft 5.
+
 ## 2.0.2 - 2024-04-16
 
 ### Changed
