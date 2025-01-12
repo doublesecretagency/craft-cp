@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- Don't automatically log in via console.
+
 ## 2.1.1 - 2025-01-11
 
 ### Added

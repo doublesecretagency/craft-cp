@@ -60,6 +60,7 @@ class CP extends Plugin
 
     /**
      * Automatically log in if:
+     *  - Not running via console
      *  - Not in a `dev` environment
      *  - Running with DDEV
      *  - User is not already logged in
@@ -68,6 +69,11 @@ class CP extends Plugin
      */
     private function _autoLogin(): void
     {
+        // If running via console, bail
+        if (Craft::$app->getRequest()->getIsConsoleRequest()) {
+            return;
+        }
+
         // If not a `dev` environment, bail
         if ('dev' !== Craft::$app->getConfig()->env) {
             return;
