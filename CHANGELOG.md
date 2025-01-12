@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.1.1 - 2025-01-11
 
 ### Added
 - Automatically log in if conditions are met.
