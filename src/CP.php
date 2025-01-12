@@ -19,6 +19,7 @@ use craft\elements\User;
 use craft\events\RegisterElementSourcesEvent;
 use craft\web\View;
 use doublesecretagency\cp\web\twig\Extension;
+use Throwable;
 use yii\base\Event;
 
 /**
@@ -33,10 +34,13 @@ class CP extends Plugin
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         // Run parent init
         parent::init();
+
+        // Automatically log in if conditions are met
+        $this->_autoLogin();
 
         // If this is a CP request
         if (Craft::$app->getRequest()->getIsCpRequest()) {
@@ -55,9 +59,61 @@ class CP extends Plugin
     // ================================================================================ //
 
     /**
+     * Automatically log in if:
+     *  - Not in a `dev` environment
+     *  - Running with DDEV
+     *  - User is not already logged in
+     *  - AUTOLOGIN environment variable is set
+     *  - User specified by AUTOLOGIN exists
+     */
+    private function _autoLogin(): void
+    {
+        // If not a `dev` environment, bail
+        if ('dev' !== Craft::$app->getConfig()->env) {
+            return;
+        }
+
+        // If not running with DDEV, bail
+        if (!getenv('DDEV_PROJECT')) {
+            return;
+        }
+
+        try {
+            // If user is already logged in, bail
+            if (Craft::$app->getUser()->getIdentity()) {
+                return;
+            }
+        } catch (Throwable $e) {
+            // Bail if an error occurs
+            return;
+        }
+
+        // Get the specified AUTOLOGIN account
+        $autologin = getenv('AUTOLOGIN');
+
+        // If no AUTOLOGIN value, bail
+        if (!$autologin) {
+            return;
+        }
+
+        // Get the user specified by AUTOLOGIN
+        $user = Craft::$app->getUsers()->getUserByUsernameOrEmail($autologin);
+
+        // If user doesn't exist, bail
+        if (!$user) {
+            return;
+        }
+
+        // Log in as the specified user
+        Craft::$app->getUser()->loginByUserId($user->id);
+    }
+
+    // ================================================================================ //
+
+    /**
      * Hide the "Dashboard" link.
      */
-    private function _hideDashboard()
+    private function _hideDashboard(): void
     {
         // Get first segment of current URL
         $page = Craft::$app->getRequest()->getSegment(1);
@@ -83,7 +139,7 @@ class CP extends Plugin
     /**
      * Hide the "Utilities" badge.
      */
-    private function _hideUtilitiesBadge()
+    private function _hideUtilitiesBadge(): void
     {
         // Hide the "Utilities" badge in the primary nav
         Event::on(
@@ -100,7 +156,7 @@ class CP extends Plugin
     /**
      * Hide the "All Entries" link.
      */
-    private function _hideAllEntries()
+    private function _hideAllEntries(): void
     {
         Event::on(
             Entry::class,
@@ -123,7 +179,7 @@ class CP extends Plugin
     /**
      * Show the element totals.
      */
-    private function _showElementTotals()
+    private function _showElementTotals(): void
     {
         // Show entry totals
         Event::on(
@@ -153,7 +209,7 @@ class CP extends Plugin
                         $total = $query->count();
 
                         // If no total, continue
-                        if (0 == $total) {
+                        if (0 === $total) {
                             continue;
                         }
 
@@ -191,7 +247,7 @@ class CP extends Plugin
                         $total = $query->count();
 
                         // If no total, continue
-                        if (0 == $total) {
+                        if (0 === $total) {
                             continue;
                         }
 
@@ -229,7 +285,7 @@ class CP extends Plugin
                         $total = $query->count();
 
                         // If no total, continue
-                        if (0 == $total) {
+                        if (0 === $total) {
                             continue;
                         }
 

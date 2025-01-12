@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- Automatically log in if conditions are met.
+
 ## 2.1.0 - 2025-01-11
 
 ### Changed
