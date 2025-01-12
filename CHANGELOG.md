@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.1.2 - 2025-01-11
 
 ### Fixed
 - Don't automatically log in via console.
