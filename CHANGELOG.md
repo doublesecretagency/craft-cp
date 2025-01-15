@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.2.0 - 2025-01-15
 
 ### Changed
 - Use composer-based console scripts.
