@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.2.1 - 2025-03-07
 
 ### Fixed
 - Fixed autologin bug.
