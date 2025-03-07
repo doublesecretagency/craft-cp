@@ -39,21 +39,25 @@ class CP extends Plugin
         // Run parent init
         parent::init();
 
-        // Automatically log in if conditions are met
-        $this->_autoLogin();
+        // Register the Twig Extension
+        Craft::$app->view->registerTwigExtension(new Extension());
 
-        // If this is a CP request
-        if (Craft::$app->getRequest()->getIsCpRequest()) {
-            // Defer most setup tasks until Craft is fully initialized
-            Craft::$app->onInit(function () {
+        // Defer setup until Craft is fully initialized
+        Craft::$app->onInit(function () {
+
+            // Automatically log in if conditions are met
+            $this->_autoLogin();
+
+            // If this is a CP request
+            if (Craft::$app->getRequest()->getIsCpRequest()) {
+                // Custom configurations
                 $this->_hideDashboard();
                 $this->_hideUtilitiesBadge();
                 $this->_hideAllEntries();
                 $this->_showElementTotals();
-            });
-            // Register the Twig Extension
-            Craft::$app->view->registerTwigExtension(new Extension());
-        }
+            }
+
+        });
     }
 
     // ================================================================================ //

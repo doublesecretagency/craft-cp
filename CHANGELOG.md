@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- Fixed autologin bug.
+
 ## 2.2.0 - 2025-01-15
 
 ### Changed
