@@ -216,6 +216,10 @@ class CP extends Plugin
                         // Get total based on criteria
                         $query = Entry::find();
                         Craft::configure($query, $criteria);
+
+                        // Count within the site being viewed
+                        $query->siteId(static::_currentSiteId());
+
                         $total = $query->count();
 
                         // If no total, continue
@@ -254,6 +258,10 @@ class CP extends Plugin
                         // Get total based on criteria
                         $query = Category::find();
                         Craft::configure($query, $source['criteria']);
+
+                        // Count within the site being viewed
+                        $query->siteId(static::_currentSiteId());
+
                         $total = $query->count();
 
                         // If no total, continue
@@ -305,6 +313,30 @@ class CP extends Plugin
                 }
             }
         );
+    }
+
+    // ================================================================================ //
+
+    /**
+     * Get the ID of the site currently being viewed in the element index.
+     */
+    private static function _currentSiteId(): int
+    {
+        $request = Craft::$app->getRequest();
+        $sites = Craft::$app->getSites();
+
+        // Get the site ID sent by the element index
+        $siteId = $request->getParam('siteId');
+
+        // If none was sent, fall back to the site handle
+        if (!$siteId) {
+            $handle = $request->getParam('site');
+            $site = ($handle ? $sites->getSiteByHandle($handle) : null);
+            $siteId = ($site->id ?? null);
+        }
+
+        // Return the resolved site, defaulting to the primary site
+        return (int) ($siteId ?: $sites->getPrimarySite()->id);
     }
 
 }

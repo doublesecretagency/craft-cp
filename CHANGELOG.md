@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- Count badges now show the correct total for each site.
+
 ## 2.2.1 - 2025-03-07
 
 ### Fixed
