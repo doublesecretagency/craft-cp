@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.2.2 - 2026-07-28
 
 ### Fixed
 - Count badges now show the correct total for each site.
