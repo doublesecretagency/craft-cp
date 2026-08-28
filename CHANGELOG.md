@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- Count badges no longer override a source's own status filter.
+
 ## 2.2.2 - 2026-07-28
 
 ### Fixed

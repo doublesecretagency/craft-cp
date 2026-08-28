@@ -209,9 +209,13 @@ class CP extends Plugin
                             continue;
                         }
 
-                        // Get all matches, regardless of status
+                        // Get a copy of the criteria, since the source's own criteria filters the index
                         $criteria = $source['criteria'];
-                        $criteria['status'] = null;
+
+                        // If the source isn't already defined by a status, count all statuses
+                        if (!array_key_exists('status', $criteria)) {
+                            $criteria['status'] = null;
+                        }
 
                         // Get total based on criteria
                         $query = Entry::find();
@@ -252,12 +256,17 @@ class CP extends Plugin
                             continue;
                         }
 
-                        // Get all matches, regardless of status
-                        $source['criteria']['status'] = null;
+                        // Get a copy of the criteria, since the source's own criteria filters the index
+                        $criteria = $source['criteria'];
+
+                        // If the source isn't already defined by a status, count all statuses
+                        if (!array_key_exists('status', $criteria)) {
+                            $criteria['status'] = null;
+                        }
 
                         // Get total based on criteria
                         $query = Category::find();
-                        Craft::configure($query, $source['criteria']);
+                        Craft::configure($query, $criteria);
 
                         // Count within the site being viewed
                         $query->siteId(static::_currentSiteId());
@@ -294,12 +303,17 @@ class CP extends Plugin
                             continue;
                         }
 
-                        // Get all matches, regardless of status
-                        $source['criteria']['status'] = null;
+                        // Get a copy of the criteria, since the source's own criteria filters the index
+                        $criteria = $source['criteria'];
+
+                        // If the source isn't already defined by a status, count all statuses
+                        if (!array_key_exists('status', $criteria)) {
+                            $criteria['status'] = null;
+                        }
 
                         // Get total based on criteria
                         $query = User::find();
-                        Craft::configure($query, $source['criteria']);
+                        Craft::configure($query, $criteria);
                         $total = $query->count();
 
                         // If no total, continue
