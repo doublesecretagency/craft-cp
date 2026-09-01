@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.2.4 - 2026-09-01
 
 ### Changed
 - Refined which caches get cleared on import.
