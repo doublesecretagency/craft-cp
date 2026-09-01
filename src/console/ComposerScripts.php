@@ -58,7 +58,10 @@ class ComposerScripts
         echo "{$colorGreen}Database import complete. 👍{$colorReset}\n\n";
 
         // Clear all caches
-        system("php craft clear-caches/all --color=1");
+        system("php craft clear-caches/compiled-templates --color=1");
+        system("php craft clear-caches/compiled-classes --color=1");
+        system("php craft clear-caches/cp-resources --color=1");
+        system("php craft clear-caches/data --color=1");
     }
 
 }
